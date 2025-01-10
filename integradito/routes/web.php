@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::resource('aseguradoras', AseguradoraController::class);
+Route::resource('aseguradoras', AseguradoraController::class);
 Route::resource('ips', IpsController::class);
 Route::resource('pacientes', PacienteController::class);
 

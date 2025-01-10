@@ -52,7 +52,7 @@
                   <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                   <a href="{{ route('pacientes.index') }}" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Pacientes</a>
                   <a href="{{ route('ips.index') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">IPS</a>
-                  {{-- <a href="{{ route('aseguradoras.index') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Aseguradoras</a> --}}
+                  <a href="{{ route('aseguradoras.index') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Aseguradoras</a>
                 </div>
               </div>
             </div>
@@ -68,7 +68,7 @@
             <a href="{{ route('pacientes.index') }}" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Integradito</a>
             <a href="{{ route('pacientes.index') }}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Pacientes</a>
             <a href="{{ route('ips.index') }}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">IPS</a>
-            <a href="{{ route('pacientes.index') }}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Aseguradoras</a>
+            <a href="{{ route('aseguradoras.index') }}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Aseguradoras</a>
           </div>
         </div>
       </nav>

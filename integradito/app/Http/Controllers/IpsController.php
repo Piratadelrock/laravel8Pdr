@@ -23,7 +23,10 @@ class IpsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {}
+    public function create()
+    {
+        return view('ips.ipsDinamico');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,6 +37,10 @@ class IpsController extends Controller
     public function store(Request $request)
     {
         //
+        $ips = new IPS();
+        $ips->nombre = $request->nombre;
+        $ips->save();
+        return redirect()->route('ips.index')->with('success', 'IPS registrada con éxito.');
     }
 
     /**
@@ -88,6 +95,7 @@ class IpsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        IPS::destroy($id);
+        return redirect()->route('ips.index')->with('success', 'Se ha eliminado con exito.');
     }
 }
