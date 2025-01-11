@@ -18,4 +18,6 @@ class Aseguradoras extends Model
     {
         return $this->belongsToMany(IPS::class, 'IPS_Aseguradoras', 'aseguradora_id', 'ips_id');
     }
+    //ignoramos la creacion y actualizacion de timestamps
+    public $timestamps = false;
 }

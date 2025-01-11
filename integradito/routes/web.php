@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AseguradoraController;
+use App\Http\Controllers\IpsAseguradoraController;
 use App\Http\Controllers\IpsController;
 use App\Http\Controllers\PacienteController;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('ipsaseguradoras', IpsAseguradoraController::class);
 Route::resource('aseguradoras', AseguradoraController::class);
 Route::resource('ips', IpsController::class);
 Route::resource('pacientes', PacienteController::class);

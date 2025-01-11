@@ -25,4 +25,7 @@ class IPS_Aseguradoras extends Model
     {
         return $this->belongsTo(Aseguradoras::class, 'aseguradora_id');
     }
+
+    //ignoramos la creacion y actualizacion de timestamps
+    public $timestamps = false;
 }

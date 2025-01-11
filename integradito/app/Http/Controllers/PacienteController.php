@@ -105,6 +105,7 @@ class PacienteController extends Controller
     public function update(Request $request, $id)
     {
 
+
         $PacienteGuardao = Pacientes::find($id);
 
         if (!$PacienteGuardao) {

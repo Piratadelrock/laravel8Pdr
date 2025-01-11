@@ -53,6 +53,7 @@
                   <a href="{{ route('pacientes.index') }}" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Pacientes</a>
                   <a href="{{ route('ips.index') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">IPS</a>
                   <a href="{{ route('aseguradoras.index') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Aseguradoras</a>
+                  <a href="{{ route('ipsaseguradoras.index') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Ips Aseguradoras</a>
                 </div>
               </div>
             </div>
