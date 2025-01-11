@@ -16,12 +16,6 @@ class IpsAseguradoraController extends Controller
      */
     public function index()
     {
-        // $ipsaseguradora = IPS_Aseguradoras::all();
-
-        // $ips_id = IPS_Aseguradoras::all('ips_id');
-        // $ipsNombre = IPS::find($ips_id);
-        // $ipsNombre->nombre;
-        // dd($ipsNombre);
 
         $ipsaseguradora = IPS_Aseguradoras::with(['ips', 'aseguradoras'])->get();
 
@@ -49,23 +43,9 @@ class IpsAseguradoraController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'ips_id' => 'required|exists:ips,id',
-        //     'aseguradora_id' => 'required|exists:aseguradoras,id',
-        // ]);
-
-        // dd($ips_id, $aseguradora_id);
-        // $validatedData = $request->validate([
-        //     'ips_id' => 'required|exists:ips,id', // Asegurarse de que ips_id sea válido
-        //     'aseguradora_id' => 'required|exists:aseguradoras,id', // Asegurarse de que aseguradora_id sea válido
-        // ]);
 
         $ips_id = $request->input('ips_id');
         $aseguradora_id = $request->input('aseguradora_id');
-
-
-        // $ipsNombre = Aseguradoras::find($aseguradora_id);
-
         $relacion = new IPS_Aseguradoras();
         $relacion->ips_id = $ips_id;
         $relacion->aseguradora_id = $aseguradora_id;
@@ -91,13 +71,6 @@ class IpsAseguradoraController extends Controller
     public function edit($id)
     {
 
-        // $relacion = IPS_Aseguradoras::findOrFail($id);
-
-        // // Cargar las listas maestras de IPS y Aseguradoras
-        // $ipsMaestra = IPS::all(['id', 'nombre']);
-        // $aseguradoraMaestra = Aseguradoras::all(['id', 'nombre']);
-
-        // return view('ipsaseguradoras.ipsAseguradoraDinamico', compact('relacion', 'ipsMaestra', 'aseguradoraMaestra'));
 
         $relacion = IPS_Aseguradoras::find($id);
         if (!$relacion) {
@@ -119,30 +92,13 @@ class IpsAseguradoraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // // Validar los datos
-        // $validatedData = $request->validate([
-        //     'ips_id' => 'required|exists:ips,id',
-        //     'aseguradora_id' => 'required|exists:aseguradoras,id',
-        // ]);
+
 
         $relacion = IPS_Aseguradoras::findOrFail($id);
         $relacion->ips_id = $request->input('ips_id');
         $relacion->aseguradora_id =  $request->input('aseguradora_id');
         $relacion->save();
         return redirect()->route('ipsaseguradoras.index')->with('success', 'Relación actualizada con éxito.');
-
-
-        // $relacion = IPS_Aseguradoras::find($id);
-
-        // if (!$relacion) {
-        //     return redirect()->route('pacientes.index')->with('error', 'ERROR controlador IPS ASEGURADORA.');
-        // }
-
-        // $relacion->ips_id = $request->input('ips_id');
-        // $relacion->aseguradora_id = $request->input('aseguradora_id');
-        // $relacion->save();
-
-        // return redirect()->route('ipsaseguradoras.index')->with('success', 'Relación actualizada con éxito.');
     }
 
     /**

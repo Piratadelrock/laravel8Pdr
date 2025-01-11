@@ -45,13 +45,22 @@
       aria-describedby="nameHelp" 
       value="{{ old('correo_electronico',isset($PacienteGuardao) ? $PacienteGuardao->correo_electronico : '') }}" placeholder="Ingrese el correo" >
     </div>
-    {{-- <label for="ips_id">IPS:</label>
-    <select id="ips_id" name="ips_id" >
-        <option value="">Seleccione una IPS</option>
-        @foreach($ips as $ip)
-            <option value="{{ $ip->id }}">{{ $ip->nombre }}</option>
-        @endforeach
-    </select> --}}
+
+
+    <div class="mb-4">
+      <label for="ips_id" class="block text-gray-700 font-semibold mb-2">Seleccione la IPS:</label>
+      <select name="ips_id" id="ips_id" 
+          class="w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+          @foreach ($ipsMaestra as $item)
+              <option value="{{ $item->id }}" 
+                {{ isset($PacienteGuardao) && $PacienteGuardao->ips_id == $item->id ? 'selected' : '' }}>
+                {{ $item->nombre }}
+            </option>
+          @endforeach
+      </select>
+
+      
+    </div>
 
  <!-- Botón de Envío -->
  <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">

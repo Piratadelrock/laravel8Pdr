@@ -19,7 +19,7 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        $pacientes = Pacientes::all();
+        $pacientes = Pacientes::with('ips')->get();
 
         return view('pacientes.pacienteIndex', compact('pacientes'));
     }
@@ -31,7 +31,8 @@ class PacienteController extends Controller
      */
     public function create()
     {
-        return view('pacientes.pacienteDinamico');
+        $ipsMaestra = IPS::all();
+        return view('pacientes.pacienteDinamico', compact('ipsMaestra'));
     }
 
     /**
@@ -42,20 +43,6 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
-        //validacion de campos sin necesidad de validar en front 
-        // $request->validate ([
-        //     'nombre' => 'required|min:3'
-        // ]);
-
-        // $validated = $request->validate([
-        //     'nombre' => 'required|string|max:255',
-        //     'edad' => 'required|integer',
-        // ]);
-
-        //esto es para tomar el id de la ips
-        // $ips = IPS::lastest()->first();
-        // $ips = IPS::orderBy('id', 'desc')->first();
-        // $ultimoId = $ips ? $ips->id : null;
 
         $paciente = new Pacientes();
 
@@ -65,7 +52,7 @@ class PacienteController extends Controller
         $paciente->direccion = $request->direccion;
         $paciente->telefono = $request->telefono;
         $paciente->correo_electronico = $request->correo_electronico;
-        $paciente->ips_id = 1;
+        $paciente->ips_id = $request->ips_id;
         $paciente->save();
 
         return redirect()->route('pacientes.index')->with('success', 'Paciente registrado con éxito.');
@@ -91,8 +78,8 @@ class PacienteController extends Controller
         if (!$PacienteGuardao) {
             return redirect()->route('pacientes.pacienteDinamico')->with('error', 'ERROR controlador paciente.');
         }
-
-        return view('pacientes.pacienteDinamico', compact('PacienteGuardao'));
+        $ipsMaestra = IPS::all(['id', 'nombre']);
+        return view('pacientes.pacienteDinamico', compact('PacienteGuardao', 'ipsMaestra'));
     }
 
     /**
@@ -117,7 +104,7 @@ class PacienteController extends Controller
         $PacienteGuardao->direccion = $request->input('direccion');
         $PacienteGuardao->telefono = $request->input('telefono');
         $PacienteGuardao->correo_electronico = $request->input('correo_electronico');
-        // $PacienteGuardao->ips_id = 1;
+        $PacienteGuardao->ips_id = $request->ips_id;
         $PacienteGuardao->save();
 
         return redirect()->route('pacientes.index')->with('success', 'se ha actualizado con exito el paciente.');

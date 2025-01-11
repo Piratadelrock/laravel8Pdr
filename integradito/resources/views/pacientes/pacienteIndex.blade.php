@@ -23,6 +23,7 @@
                     <th class="px-4 py-2 text-left font-semibold text-gray-700">Direccion</th>
                     <th class="px-4 py-2 text-left font-semibold text-gray-700">Telefono</th>
                     <th class="px-4 py-2 text-left font-semibold text-gray-700">Correo electronico</th>
+                    <th class="px-4 py-2 text-left font-semibold text-gray-700">IPS</th>
                     <th class="px-4 py-2 text-left font-semibold text-gray-700">Acciones</th>
                 </tr>
             </thead>
@@ -37,6 +38,7 @@
                         <td class="px-4 py-2 text-gray-800">{{ $paciente->direccion }}</td>
                         <td class="px-4 py-2 text-gray-800">{{ $paciente->telefono }}</td>
                         <td class="px-4 py-2 text-gray-800">{{ $paciente->correo_electronico }}</td>
+                        <td class="px-4 py-2 text-gray-800">{{ $paciente->ips->nombre}}</td>
                         <td class="px-4 py-2">
                             <div class="flex space-x-2">
                             <!-- Acciones como Editar y Eliminar -->
