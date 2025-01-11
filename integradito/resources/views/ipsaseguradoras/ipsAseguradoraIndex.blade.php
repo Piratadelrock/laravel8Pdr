@@ -23,8 +23,8 @@
                 @foreach ($ipsaseguradora as $iar)
                     <tr class="border-b hover:bg-gray-100">
                         <td class="px-4 py-2 text-gray-800">{{ $iar->id }}</td>
-                        <td class="px-4 py-2 text-gray-800">{{ $iar->ips_id }}</td>
-                        <td class="px-4 py-2 text-gray-800">{{ $iar->aseguradora_id }}</td>
+                        <td class="px-4 py-2 text-gray-800">{{ $iar->ips->nombre }}</td>
+                        <td class="px-4 py-2 text-gray-800">{{ $iar->aseguradoras->nombre }}</td>
                         <td class="px-4 py-2">
                             <div class="flex space-x-2">
                             <!-- Acciones como Editar y Eliminar -->

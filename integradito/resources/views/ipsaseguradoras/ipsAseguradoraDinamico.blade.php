@@ -19,7 +19,7 @@
       <select name="ips_id" id="ips_id" 
           class="w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
           @foreach ($ipsMaestra as $item)
-              <option value="{{ $item->id }}">{{ $item->nombre }}</option>
+              <option value="{{ $item->id }}" {{ isset($relacion) && $relacion->ips_id == $item->id  ? 'selected' : '' }} >{{ $item->nombre }}</option>
           @endforeach
       </select>
 
@@ -30,7 +30,9 @@
       <select name="aseguradora_id" id="aseguradora_id" 
           class="w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500">
           @foreach ($aseguradoraMaestra as $item)
-              <option value="{{ $item->id }}">{{ $item->nombre }}</option>
+              <option value="{{ $item->id }}" {{ isset($relacion) && $relacion->aseguradora_id == $item->id ? 'selected' : '' }}>
+                {{ $item->nombre }}
+            </option>
           @endforeach
       </select>
   </div>

@@ -1,0 +1,49 @@
+-- Base de Datos diseñada por Emanuel Lopera
+-- Relaciones de Base de Datos para la gestión de Pacientes, IPS y Aseguradoras
+
+-- Crear tabla de IPS
+CREATE TABLE IPS (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL
+);
+-- Crear tabla de pacientes
+CREATE TABLE Pacientes (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    fecha_nacimiento DATE NOT NULL,
+    documento_identidad VARCHAR(20) NOT NULL UNIQUE,
+    direccion VARCHAR(200),
+    telefono VARCHAR(15),
+    correo_electronico VARCHAR(100),
+    ips_id INT NOT NULL,
+    FOREIGN KEY (ips_id) REFERENCES IPS (id) ON DELETE CASCADE
+);
+
+-- Crear tabla de aseguradoras
+CREATE TABLE Aseguradoras (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL
+);
+
+-- Crear tabla intermedia para relacionar IPS con Aseguradoras
+CREATE TABLE IPS_Aseguradoras (
+    ips_id INT NOT NULL,
+    aseguradora_id INT NOT NULL,
+    PRIMARY KEY (ips_id, aseguradora_id),
+    FOREIGN KEY (ips_id) REFERENCES IPS (id) ON DELETE CASCADE,
+    FOREIGN KEY (aseguradora_id) REFERENCES Aseguradoras (id) ON DELETE CASCADE
+);
+
+-- Insertar datos de ejemplo
+-- Agregar IPS
+INSERT INTO IPS (nombre) VALUES ('Somer Rionegro');
+
+-- Agregar aseguradoras
+INSERT INTO Aseguradoras (nombre) VALUES ('Liberty');
+
+-- Relacionar IPS con aseguradoras
+INSERT INTO IPS_Aseguradoras (ips_id, aseguradora_id) VALUES (1, 1);
+
+-- Agregar paciente
+INSERT INTO Pacientes (nombre, fecha_nacimiento, documento_identidad, direccion, telefono, correo_electronico, ips_id) 
+VALUES ('Carlos emanuel', '1985-05-15', '123456789', 'Calle 123 #45-67', '3001234567', 'carlos@example.com', 1);

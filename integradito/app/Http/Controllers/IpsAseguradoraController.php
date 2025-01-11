@@ -16,9 +16,14 @@ class IpsAseguradoraController extends Controller
      */
     public function index()
     {
-        $ipsaseguradora = IPS_Aseguradoras::all();
+        // $ipsaseguradora = IPS_Aseguradoras::all();
 
+        // $ips_id = IPS_Aseguradoras::all('ips_id');
+        // $ipsNombre = IPS::find($ips_id);
+        // $ipsNombre->nombre;
+        // dd($ipsNombre);
 
+        $ipsaseguradora = IPS_Aseguradoras::with(['ips', 'aseguradoras'])->get();
 
         return view('ipsaseguradoras.ipsAseguradoraIndex', compact('ipsaseguradora'));
     }
@@ -85,10 +90,24 @@ class IpsAseguradoraController extends Controller
      */
     public function edit($id)
     {
+
+        // $relacion = IPS_Aseguradoras::findOrFail($id);
+
+        // // Cargar las listas maestras de IPS y Aseguradoras
+        // $ipsMaestra = IPS::all(['id', 'nombre']);
+        // $aseguradoraMaestra = Aseguradoras::all(['id', 'nombre']);
+
+        // return view('ipsaseguradoras.ipsAseguradoraDinamico', compact('relacion', 'ipsMaestra', 'aseguradoraMaestra'));
+
+        $relacion = IPS_Aseguradoras::find($id);
+        if (!$relacion) {
+            return redirect()->route('ipsaseguradoras.ipsAseguradoraDinamico')->with('error', 'ERROR controlador ipsaseguradora.');
+        }
+
         $ipsMaestra = IPS::all(['id', 'nombre']);
         $aseguradoraMaestra = Aseguradoras::all(['id', 'nombre']);
 
-        return view('ipsaseguradoras.ipsAseguradoraDinamico', compact('ipsMaestra', 'aseguradoraMaestra'));
+        return view('ipsaseguradoras.ipsAseguradoraDinamico', compact('relacion', 'ipsMaestra', 'aseguradoraMaestra'));
     }
 
     /**
@@ -100,21 +119,17 @@ class IpsAseguradoraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validar los datos
-        $validatedData = $request->validate([
-            'ips_id' => 'required|exists:ips,id',
-            'aseguradora_id' => 'required|exists:aseguradoras,id',
-        ]);
+        // // Validar los datos
+        // $validatedData = $request->validate([
+        //     'ips_id' => 'required|exists:ips,id',
+        //     'aseguradora_id' => 'required|exists:aseguradoras,id',
+        // ]);
 
-        // Encuentra la relación y actualiza los campos
         $relacion = IPS_Aseguradoras::findOrFail($id);
-        $relacion->ips_id = $validatedData['ips_id'];
-        $relacion->aseguradora_id = $validatedData['aseguradora_id'];
+        $relacion->ips_id = $request->input('ips_id');
+        $relacion->aseguradora_id =  $request->input('aseguradora_id');
         $relacion->save();
-
-        // Redirige con un mensaje de éxito
         return redirect()->route('ipsaseguradoras.index')->with('success', 'Relación actualizada con éxito.');
-
 
 
         // $relacion = IPS_Aseguradoras::find($id);
