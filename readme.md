@@ -29,4 +29,4 @@ l
       DB_PORT=5432
       DB_DATABASE=integradito
       DB_USERNAME=postgres
-      DB_PASSWORD=admin
+      DB_PASSWORD=***
