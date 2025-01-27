@@ -23,5 +23,5 @@ Route::resource('ips', IpsController::class);
 Route::resource('pacientes', PacienteController::class);
 
 Route::get('/', function () {
-    return view('welcome');
+      return redirect()->route('pacientes');
 });
