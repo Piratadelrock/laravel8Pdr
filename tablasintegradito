@@ -27,9 +27,9 @@ CREATE TABLE Aseguradoras (
 
 -- Crear tabla intermedia para relacionar IPS con Aseguradoras
 CREATE TABLE IPS_Aseguradoras (
-    ips_id INT NOT NULL,
+    id SERIAL PRIMARY KEY,
+	ips_id INT NOT NULL,
     aseguradora_id INT NOT NULL,
-    PRIMARY KEY (ips_id, aseguradora_id),
     FOREIGN KEY (ips_id) REFERENCES IPS (id) ON DELETE CASCADE,
     FOREIGN KEY (aseguradora_id) REFERENCES Aseguradoras (id) ON DELETE CASCADE
 );
@@ -47,3 +47,10 @@ INSERT INTO IPS_Aseguradoras (ips_id, aseguradora_id) VALUES (1, 1);
 -- Agregar paciente
 INSERT INTO Pacientes (nombre, fecha_nacimiento, documento_identidad, direccion, telefono, correo_electronico, ips_id) 
 VALUES ('Carlos emanuel', '1985-05-15', '123456789', 'Calle 123 #45-67', '3001234567', 'carlos@example.com', 1);
+
+
+-- Agregar timestapms
+ALTER TABLE pacientes ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE pacientes ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+
