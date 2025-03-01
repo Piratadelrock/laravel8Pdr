@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Integradito</title>
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/doodle/48/internet--v1.png">
+
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,6 +14,8 @@
 
     {{-- <link href="{{ mix('css/app.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    
 
 </head>
 
@@ -45,7 +49,8 @@
             </div>
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
               <div class="flex shrink-0 items-center">
-                <img class="h-8 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500" alt="Integradito">
+                {{-- <img class="h-8 w-auto" src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" alt="Integradito"> --}}
+              <img src="data:image/png;base64,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" alt="integradito" width="50" height="50">
               </div>
               <div class="hidden sm:ml-6 sm:block">
                 <div class="flex space-x-4">

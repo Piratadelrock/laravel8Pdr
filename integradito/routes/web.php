@@ -21,7 +21,6 @@ Route::resource('ipsaseguradoras', IpsAseguradoraController::class);
 Route::resource('aseguradoras', AseguradoraController::class);
 Route::resource('ips', IpsController::class);
 Route::resource('pacientes', PacienteController::class);
-
 Route::get('/', function () {
-      return redirect()->route('pacientes');
+      return redirect()->route('pacientes.index');
 });
